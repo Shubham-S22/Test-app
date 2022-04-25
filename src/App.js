@@ -2,7 +2,7 @@
 // import './App.css';
 // jQuery
 import React from "react";
-import $, { event } from 'jquery';
+import $, { event } from "jquery";
 // Esri
 import Graphic from "@arcgis/core/Graphic";
 import Map from "@arcgis/core/Map";
@@ -16,7 +16,7 @@ class App extends React.Component {
       view: null,
       lat: null,
       long: null,
-      pointGraphic: null
+      pointGraphic: null,
     };
     this.textChangeHandler = this.textChangeHandler.bind(this);
     this.btnClick = this.btnClick.bind(this);
@@ -36,7 +36,7 @@ class App extends React.Component {
     let view = new MapView({
       map: map,
       container: "map",
-      zoom: 2
+      zoom: 2,
     });
 
     view.on("click", this.mapClick);
@@ -47,25 +47,23 @@ class App extends React.Component {
   textChangeHandler(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
 
-    console.log(evt.target.name, evt.target.value)
+    console.log(evt.target.name, evt.target.value);
   }
 
   render() {
     return (
-      <div id='mainDiv'>
+      <div id="mainDiv">
         <table>
           <tr>
             <td className="sliceLeft">
-              <div id='map'></div>
+              <div id="map"></div>
             </td>
             <td className="sliceRight">
               <div>
                 <table>
                   {/* Lat */}
                   <tr>
-                    <th>
-                      Lat
-                    </th>
+                    <th>Lat</th>
                     <td>
                       <input
                         id="latVal"
@@ -78,9 +76,7 @@ class App extends React.Component {
 
                   {/* Long */}
                   <tr>
-                    <th>
-                      Long
-                    </th>
+                    <th>Long</th>
                     <td>
                       <input
                         id="longVal"
@@ -94,9 +90,7 @@ class App extends React.Component {
                   {/* Button */}
                   <tr>
                     <td colSpan={2}>
-                      <button
-                        id="btn"
-                        onClick={this.btnClick} >
+                      <button id="btn" onClick={this.btnClick}>
                         Search
                       </button>
                     </td>
@@ -107,7 +101,7 @@ class App extends React.Component {
           </tr>
         </table>
       </div>
-    )
+    );
   }
 
   btnClick() {
@@ -117,11 +111,10 @@ class App extends React.Component {
 
     this.state.view.goTo({
       center: [long, lat],
-      zoom: 5
+      zoom: 5,
     });
 
-    this.addGraphic(lat, long)
-
+    this.addGraphic(lat, long);
   }
 
   mapClick(evt) {
@@ -134,7 +127,7 @@ class App extends React.Component {
     $("#latVal").val(lat);
     $("#longVal").val(long);
 
-    this.addGraphic(lat, long)
+    this.addGraphic(lat, long);
   }
 
   addGraphic(lat, long) {
@@ -143,21 +136,21 @@ class App extends React.Component {
 
     // First create a point geometry
     let point = {
-      type: "point",  // autocasts as new Point()
+      type: "point", // autocasts as new Point()
       longitude: parseFloat(long),
-      latitude: parseFloat(lat)
+      latitude: parseFloat(lat),
     };
 
     // Create a symbol for drawing the point
     let markerSymbol = {
-      type: "simple-marker",  // autocasts as new SimpleMarkerSymbol()
-      color: [226, 119, 40]
+      type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+      color: [226, 119, 40],
     };
 
     // Create a graphic and add the geometry and symbol to it
     let pointGraphic = new Graphic({
       geometry: point,
-      symbol: markerSymbol
+      symbol: markerSymbol,
     });
 
     this.state.view.graphics.add(pointGraphic);
@@ -166,3 +159,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+// testing
