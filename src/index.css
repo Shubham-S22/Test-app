@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#map{
+  height: 700px;
+  width: 600px;
+}
+
+.sliceLeft{
+  display: inline-block;
+  width: 75%;
+  }
+  
+  .sliceRight{
+  display: inline-block;
+  width: 19%;
+  top: 0px;
+  }
+
+  @import "https://js.arcgis.com/4.23/@arcgis/core/assets/esri/themes/dark/main.css";
